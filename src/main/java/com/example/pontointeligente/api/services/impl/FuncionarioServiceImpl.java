@@ -5,11 +5,13 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.pontointeligente.api.entities.Funcionario;
 import com.example.pontointeligente.api.repositories.FuncionarioRepository;
 import com.example.pontointeligente.api.services.FuncionarioService;
 
+@Service
 public class FuncionarioServiceImpl implements FuncionarioService {
 
 	private static final Logger log = LoggerFactory.getLogger(FuncionarioServiceImpl.class);
@@ -35,7 +37,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	@Override
 	public Optional<Funcionario> buscarPorId(Long id) {
 		log.info("Buscando funcionário pelo IDl: {}", id);
-		return this.funcionarioRepository.findById(id);
+		return Optional.ofNullable(this.funcionarioRepository.findOne(id));
 	}
 
 }

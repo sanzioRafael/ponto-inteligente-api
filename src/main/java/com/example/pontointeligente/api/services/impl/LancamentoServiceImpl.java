@@ -15,12 +15,12 @@ import com.example.pontointeligente.api.services.LancamentoService;
 
 @Service
 public class LancamentoServiceImpl implements LancamentoService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(LancamentoServiceImpl.class);
-	
+
 	@Autowired
 	private LancamentoRepository lancamentoRepository;
-	
+
 	@Override
 	public Page<Lancamento> buscarPorFuncionarioId(Long funcionarioId, PageRequest pageRequest) {
 		log.info("Buscando lançamentos para o funcionário ID: {}", funcionarioId);
@@ -30,7 +30,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 	@Override
 	public Optional<Lancamento> buscarPorId(Long id) {
 		log.info("Buscando um lançamento pelo ID: {}", id);
-		return this.lancamentoRepository.findById(id);
+		return Optional.ofNullable(this.lancamentoRepository.findOne(id));
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 	@Override
 	public void remover(Long id) {
 		log.info("Removendo o lançamento por ID: {}", id);
-		this.lancamentoRepository.deleteById(id);
+		this.lancamentoRepository.delete(id);
 	}
 
 }

@@ -36,7 +36,6 @@ public interface LancamentoService {
 
 	/*
 	 * Remove um lançamento da base de dados.
-	 * 
 	 * @param id
 	 */
 	void remover(Long id);
